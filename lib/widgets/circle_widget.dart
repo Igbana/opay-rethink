@@ -14,13 +14,14 @@ class CircleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double size = 56;
     return Column(
       mainAxisSize: MainAxisSize.min,
       spacing: 8,
       children: [
         Container(
-          width: 64,
-          height: 64,
+          width: size,
+          height: size,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: color,
@@ -34,9 +35,9 @@ class CircleWidget extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: Colors.grey[800],
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
             ),
           ),
       ],

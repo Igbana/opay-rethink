@@ -4,6 +4,12 @@ import 'package:flutter/services.dart';
 import 'widgets/circle_widget.dart';
 import 'widgets/topbar.dart';
 
+const cl = [
+  Color.fromARGB(255, 7, 43, 8),
+  Color.fromARGB(255, 6, 95, 88),
+  Colors.teal,
+];
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -11,6 +17,20 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: Container(
+          margin: .fromLTRB(0, 0, 4, 25),
+          padding: .all(16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: .circular(12),
+            boxShadow: [BoxShadow(blurRadius: 16, color: Colors.grey.shade600)],
+          ),
+          child: CircleWidget(
+            label: "Chat Support",
+            color: Colors.teal,
+            child: Icon(Icons.lightbulb, color: Colors.yellow),
+          ),
+        ),
         appBar: AppBar(
           toolbarHeight: 0,
           systemOverlayStyle: SystemUiOverlayStyle(
@@ -19,19 +39,17 @@ class HomePage extends StatelessWidget {
           ),
         ),
         body: Column(
+          crossAxisAlignment: .start,
           children: [
             TopBar(),
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const .all(16),
               child: SizedBox(
                 height: 280,
                 child: Stack(
-                  alignment: AlignmentGeometry.bottomCenter,
+                  alignment: .bottomCenter,
                   children: [
-                    Align(
-                      alignment: AlignmentGeometry.topCenter,
-                      child: BalanceCard(),
-                    ),
+                    Align(alignment: .topCenter, child: BalanceCard()),
                     Padding(
                       padding: const EdgeInsets.all(16),
                       child: SendBox(),
@@ -41,36 +59,132 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Container(
+              padding: .symmetric(vertical: 32, horizontal: 16),
               decoration: BoxDecoration(
                 gradient: RadialGradient(
                   focal: Alignment.bottomCenter,
                   radius: 2,
                   colors: [Colors.orange.shade50, Colors.white, Colors.white],
                 ),
-                border: BoxBorder.symmetric(
-                  horizontal: BorderSide(color: Colors.grey),
-                ),
+                border: .symmetric(horizontal: BorderSide(color: Colors.grey)),
               ),
-              height: 100,
               child: Row(
+                spacing: 16,
                 children: [
                   Container(
                     height: 64,
                     width: 64,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey),
+                      borderRadius: .circular(12),
+                      border: .all(color: Colors.grey),
                     ),
                   ),
                   Column(
-                    mainAxisAlignment: .start,
+                    crossAxisAlignment: .start,
                     children: [
-                      Text("Betting Payment"),
                       Text(
-                        "Fund betting account with #100 or more to get up to #100 cashback",
+                        "Betting Payment",
+                        style: TextStyle(fontSize: 16, fontWeight: .w700),
+                      ),
+                      SizedBox(
+                        width: 210,
+                        child: Text(
+                          "Fund betting account with #100 or more to get up to #100 cashback",
+                          style: TextStyle(fontSize: 11, fontWeight: .w600),
+                        ),
                       ),
                     ],
                   ),
+                  Spacer(),
+                  Container(
+                    padding: .symmetric(vertical: 18, horizontal: 36),
+                    decoration: BoxDecoration(
+                      color: Colors.teal,
+                      borderRadius: .circular(32),
+                    ),
+                    child: Text(
+                      "Go",
+                      style: TextStyle(fontSize: 14, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const .all(16),
+              child: Text(
+                "Quick Actions",
+                style: TextStyle(fontSize: 16, fontWeight: .w700),
+              ),
+            ),
+            Padding(
+              padding: const .symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: .spaceBetween,
+                children: [
+                  CircleWidget(label: "Airtime", child: Icon(Icons.sim_card)),
+                  CircleWidget(
+                    label: "Data",
+                    child: Icon(Icons.wifi_tethering),
+                  ),
+                  CircleWidget(label: "Safebox", child: Icon(Icons.security)),
+                  CircleWidget(label: "Betting", child: Icon(Icons.sim_card)),
+                  CircleWidget(
+                    label: "More",
+                    child: Icon(Icons.grid_view_rounded),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const .all(16),
+              child: Stack(
+                alignment: .centerLeft,
+                children: [
+                  for (int i = 0; i < 3; i++)
+                    AnimatedContainer(
+                      padding: .all((15 + (i).toDouble())),
+                      duration: Durations.medium4,
+                      width: MediaQuery.of(context).size.width - (20 * (i + 1)),
+                      decoration: BoxDecoration(
+                        color: cl[i],
+                        borderRadius: .circular(16),
+                      ),
+                      child: Row(
+                        spacing: 16,
+                        children: [
+                          Container(
+                            height: 64,
+                            width: 64,
+                            decoration: BoxDecoration(
+                              borderRadius: .circular(12),
+                              border: .all(color: Colors.grey),
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: .start,
+                            children: [
+                              Text(
+                                "Hot Deal for You",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: .w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                "Deposit #100-#1,000 and Get #100 instantly!",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: .w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                 ],
               ),
             ),
