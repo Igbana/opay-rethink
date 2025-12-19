@@ -37,7 +37,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Align(alignment: .topCenter, child: BalanceCard()),
                     Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: .all(16),
                       child: SendBox(),
                     ),
                   ],
